@@ -14,8 +14,17 @@ app.get('/', (req, res) => {
 })
 
 app.get('/alumnos', (req, res) => {
-    // res.json(jsonAlumnos)
-    res.send(JSON.stringify(jsonAlumnos))
+    res.json(jsonAlumnos)
+    // res.send(JSON.stringify(jsonAlumnos))
+})
+
+app.get('/alumnos/:nombreAlumnoParam', (req, res) => {
+    console.log(req.params)
+    console.log(req.params.nombreAlumnoParam)
+
+    const nombreAlumno = jsonAlumnos.find(item => item.name === req.params.nombreAlumnoParam)
+    res.send(nombreAlumno)
+
 })
 
 app.use(express.static('static'));
